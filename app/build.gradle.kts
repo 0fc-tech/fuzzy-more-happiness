@@ -72,6 +72,10 @@ dependencies {
     //ajout pour récupérer le viewModel instancié by viewModels
     implementation("androidx.fragment:fragment-ktx:1.5.5")
 
+    //Peremet l'affichage d'image et la mise en cache
+    implementation("com.squareup.picasso:picasso:2.8")
+    //Permet la récupération de données depuis un webservice
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

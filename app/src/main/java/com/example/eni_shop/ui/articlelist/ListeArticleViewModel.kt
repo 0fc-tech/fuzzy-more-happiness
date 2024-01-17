@@ -18,15 +18,16 @@ class ListeArticleViewModel(private val articleDAO: ArticleDAO) : ViewModel() {
     var articles = MutableLiveData<List<Article>>()
     private val articleRepository = ArticleRepository()
 
-    fun getArticlesList(): MutableLiveData<List<Article>> {
-        articles.value = articleRepository.getAllArticle()
-        return articles
+    fun getArticlesList() {
+        articleRepository.getAllArticle().observeForever{
+            articles.value = it
+        }
     }
 
     fun getArticlesFav(): MutableLiveData<List<Article>> {
         val articlesFav = MutableLiveData<List<Article>>()
         viewModelScope.launch {
-            articlesFav.value = articleDAO.selectAll()
+            articlesFav.value = articleDAO.selectAll().value
         }
         return articlesFav
     }

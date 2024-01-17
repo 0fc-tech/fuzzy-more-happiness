@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.eni_shop.R
 import com.example.eni_shop.bo.Article
 import com.example.eni_shop.databinding.FragmentListeArticleBinding
-import com.example.eni_shop.repository.ArticleRepository
 
 class ListeArticleFragment : Fragment() {
 
@@ -33,7 +32,8 @@ class ListeArticleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        vm.getArticlesList().observe(viewLifecycleOwner) {
+        vm.getArticlesList()
+        vm.articles.observe(viewLifecycleOwner) {
             displayArticles(it)
         }
 

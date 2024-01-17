@@ -1,5 +1,6 @@
 package com.example.eni_shop.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -16,7 +17,7 @@ interface ArticleDAO {
     fun countById(id : Long) : Int
 
     @Query("SELECT * FROM Article")
-    fun selectAll() : List<Article>
+    fun selectAll() : LiveData<List<Article>>
 
     @Insert
     fun addNewOne(article : Article) : Long

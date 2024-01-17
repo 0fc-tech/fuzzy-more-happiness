@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eni_shop.bo.Article
 import com.example.eni_shop.databinding.TemplateArticleBinding
+import com.squareup.picasso.Picasso
 
 class ArticleAdapter(val arrayList: List<Article>,
                      val onArticleClick :(articla:Article)-> Unit) : RecyclerView.Adapter<ArticleAdapter.ArticleVH>() {
@@ -23,8 +24,15 @@ class ArticleAdapter(val arrayList: List<Article>,
 
     override fun onBindViewHolder(holder: ArticleVH, position: Int) {
         holder.binding.article = arrayList[position]
+
         holder.itemView.setOnClickListener {
             onArticleClick(arrayList[position])
+        }
+        arrayList[position].urlImage?.let {urlImage->
+            if(urlImage.isEmpty()) return;
+            Picasso.get()
+                .load(urlImage)
+                .into(holder.binding.imageViewThumbnail)
         }
     }
 }

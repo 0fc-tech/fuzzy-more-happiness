@@ -1,6 +1,8 @@
 package com.example.eni_shop.dao.memory
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.eni_shop.bo.Article
 import com.example.eni_shop.dao.ArticleDAO
 import java.util.Date
@@ -46,8 +48,8 @@ class ArticleDAOMemoryImpl : ArticleDAO {
     }
 
 
-    override fun selectAll(): List<Article> {
-        return articlesInMemory
+    override fun selectAll(): LiveData<List<Article>> {
+        return MutableLiveData(articlesInMemory)
     }
 
     override fun addNewOne(article: Article): Long {
